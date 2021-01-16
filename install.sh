@@ -115,7 +115,8 @@ for file in $filelist; do
   else
     endfile=${file}
   fi
-  install -D ${file} ${libxx_srcdir}/libcxx/${endfile#src/}
+  mkdir -p `dirname ${libxx_srcdir}/libcxx/${endfile#src/}`
+  install ${file} ${libxx_srcdir}/libcxx/${endfile#src/}
 done
 
 mkdir -p ${libcxx_incdir}
@@ -123,13 +124,15 @@ mkdir -p ${libcxx_incdir}
 filelist=`find include -type f`
 
 for file in $filelist; do
-  install -D ${file} ${nuttx_path}/include/libcxx/${file#include/}
+  mkdir -p `dirname ${nuttx_path}/include/libcxx/${file#include/}`
+  install ${file} ${nuttx_path}/include/libcxx/${file#include/}
 done
 
 filelist=`find machine -type f`
 
 for file in $filelist; do
-  install -D ${file} ${nuttx_path}/include/${file}
+  mkdir -p `dirname ${nuttx_path}/include/${file}`
+  install ${file} ${nuttx_path}/include/${file}
 done
 
 echo "Installation suceeded"
