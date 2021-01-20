@@ -11,6 +11,13 @@
 #ifndef _LIBCPP_CMATH
 #define _LIBCPP_CMATH
 
+#include <nuttx/config.h>
+
+#ifdef CONFIG_ARCH_MATH_H
+#  include_next <cmath>
+
+#else
+
 /*
     cmath synopsis
 
@@ -620,4 +627,5 @@ __libcpp_isfinite(_A1 __lcpp_x) _NOEXCEPT
 
 _LIBCPP_END_NAMESPACE_STD
 
+#endif  // CONFIG_ARCH_MATH_H
 #endif  // _LIBCPP_CMATH
